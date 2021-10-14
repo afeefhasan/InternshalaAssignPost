@@ -5,7 +5,7 @@ import SearchBox from '../component/SearchBox';
 import Scroll from '../component/Scroll';
 import './App.css';
 import {requestPOSTS, setSearchField} from '../action';
-
+import Loader from "react-loader-spinner";
 const mapStateToProps=state=>{
   return {
     searchField:state.searchPOSTS.searchField,
@@ -40,7 +40,15 @@ this.props.onRequestPosts();
       return post.title.toLowerCase().includes(searchField.toLowerCase());
     })
     return isPending ?
-      <h1>Loading</h1> :
+    <div className="loader">
+            <Loader
+    type="Rings"
+    color="#00BFFF"
+    height={100}
+    width={100}
+  />
+    </div>
+ :
       (
         <div className='tc'>
           <h1 className='f1'>Posts</h1>
